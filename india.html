@@ -39,7 +39,21 @@
   ga('create', 'UA-70098597-1', 'auto');
   ga('send', 'pageview');
 
-</script>
+  $(function() {
+    $('a[href*="#"]:not([href="#"])').click(function() {
+      if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+        var target = $(this.hash);
+        target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+        if (target.length) {
+          $('html, body').animate({
+            scrollTop: target.offset().top
+          }, 1000);
+          return false;
+        }
+      }
+    });
+  });
+	</script>
 
 </head>
 
@@ -122,13 +136,12 @@
 		<!-- INTRODUCE GOODS AND SERVICES TAX -->
 
 		<div class="policy food telecom energy industry structure retail services defense money">
-		<div class="first">
-		<h2 class="name" id="red">Create a unified national tax on goods and services</h2>
-		<p class="status">Incomplete</p>
-		<p class="difficulty">DIFFICULTY: High</p>
-		<p class="desc">The national Goods & Services Tax will combine most of India’s state and local taxes into a streamlined tax system, easing compliance, ending cascading taxes, and expediting transportation.
-</p>
-		</div>
+			<div class="first">
+				<h2 class="name" id="red">Create a unified national tax on goods and services</h2>
+					<p class="status">Incomplete</p>
+					<p class="difficulty">DIFFICULTY: High</p>
+					<p class="desc">The national Goods & Services Tax will combine most of India’s state and local taxes into a streamlined tax system, easing compliance, ending cascading taxes, and expediting transportation.</p>
+			</div>
 
 			<div class="info-text"><p>A <a href="http://www.gstindia.com/wp-content/uploads/2015/12/model_gst_act_2016_draft.pdf" target="_blank">draft</a> of the model law is in circulation, but the Rajya Sabha has yet to vote on the necessary constitutional <a href="http://www.prsindia.org/uploads/media/Constitution%20122nd/Constitution%20%28122%29%20as%20passed%20by%20LS.pdf">amendment.</a></p></div>
 
@@ -785,18 +798,18 @@ $( document ).ready( function() {
   });
 
   // filter functions
-  var filterFns = {
-    // show if number is greater than 50
-    numberGreaterThan50: function() {
-      var number = $(this).find('.number').text();
-      return parseInt( number, 10 ) > 50;
-    },
-    // show if name ends with -ium
-    ium: function() {
-      var name = $(this).find('.name').text();
-      return name.match( /ium$/ );
-    }
-  };
+	var filterFns = {
+		// show if number is greater than 50
+		numberGreaterThan50: function() {
+			var number = $(this).find('.number').text();
+			return parseInt( number, 10 ) > 50;
+		},
+		// show if name ends with -ium
+		ium: function() {
+			var name = $(this).find('.name').text();
+			return name.match( /ium$/ );
+		}
+	};
 
   // bind filter button click
   $('#filters').on( 'click', 'button', function() {
@@ -825,25 +838,6 @@ $( document ).ready( function() {
 
 
 		</script>
-
-	<script>
-	$(function() {
-	  $('a[href*=#]:not([href=#])').click(function() {
-	    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-
-	      var target = $(this.hash);
-	      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-	      if (target.length) {
-	        $('html,body').animate({
-	          scrollTop: target.offset().top
-	        }, 1000);
-	        return false;
-	      }
-	    }
-	  });
-	});
-	</script>
-
 
 </body>
 </html>
